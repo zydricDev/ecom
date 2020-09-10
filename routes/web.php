@@ -24,4 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/p/create', [PostsController::class,'create']);
+Route::post('/p', [PostsController::class,'store']);
+
+
 Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');

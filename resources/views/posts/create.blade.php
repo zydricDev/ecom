@@ -7,23 +7,30 @@
     </x-slot>
 
     <div class="container">
-      <div class="row p-5">
-          <div>
-            <x-jet-label value="Item Description" />
-            <x-jet-input class="block w-full" type="text" name="post_item" :value="old('post_item')" required autofocus autocomplete="post_item" />
-          </div>
-          <div>
-            <x-jet-label value="Item Price" />
-            <x-jet-input class="block" type="text" name="post_price" :value="old('post_price')" required autofocus autocomplete="post_price" />
-          </div>
-          <div class="row pt-5">
-            <x-jet-label value="Post Image" />
-            <x-jet-input class="form-control-file" type="file" name="image" />
-          </div>
-          <div class="row pt-5">
-            <x-jet-label value="Add This Item" />
-            <x-jet-button class="p-5"/>
-          </div>
-      </div>
+      <form action="/p" enctype="multipart/form-data" method="post">
+        @csrf
+        <div class="row pt-4">
+            <div class="col-5">
+              <x-jet-label value="Item title" />
+              <x-jet-input class="block w-full" type="text" name="title" id="title" :value="old('title')" required autofocus autocomplete="title" />
+
+              <x-jet-label value="Item Description" />
+              <x-jet-input class="block w-full" type="text" name="description" id="title" :value="old('description')" required autofocus autocomplete="description" />
+
+              <x-jet-label value="Item Price" />
+              <x-jet-input class="block" type="number" min="0" max="1000000" name="price" id="price" :value="old('price')" required />
+
+            </div>
+
+            <div class="col-5">
+              <x-jet-label value="Post Image" />
+              <x-jet-input class="form-control-file" type="file" name="image" required />
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" name="button" class="btn btn-primary">Post Item</button>
+        </div>
+      </form>
     </div>
 </x-app-layout>
