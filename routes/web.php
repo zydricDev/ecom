@@ -25,6 +25,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/p/create', [PostsController::class,'create']);
 Route::post('/p', [PostsController::class,'store']);
+Route::get('/p/{post}', [PostsController::class,'show']);
+
+Route::get('/test/{post}/edit', [PostsController::class,'edit'])->name('test.edit');
+Route::patch('/test/{post}', [PostsController::class,'update'])->name('test.update');
 
 
 Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');

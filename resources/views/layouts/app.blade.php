@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        
+
         <!--Bootstrap-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -37,13 +37,13 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                                    Dashboard
+                                <x-jet-nav-link href="/profile/{{Auth::user()->id}}" :active="request()->routeIs('/profile/{{Auth::user()->id}}')">
+                                    Home
                                 </x-jet-nav-link>
                             </div>
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
+                                <x-jet-nav-link href="/p/create" :active="request()->routeIs('/p/create')">
                                     Sell
                                 </x-jet-nav-link>
                             </div>
@@ -67,6 +67,10 @@
 
                                     <x-jet-dropdown-link href="/user/profile">
                                         Profile
+                                    </x-jet-dropdown-link>
+
+                                    <x-jet-dropdown-link href="/profile/{{ Auth::user()->id }}/edit">
+                                        Edit Profile
                                     </x-jet-dropdown-link>
 
                                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          Sell Item
+          Edit item name: {{$post->title}}
         </h2>
 
     </x-slot>
 
     <div class="container">
-      <form action="/p" enctype="multipart/form-data" method="post">
+      <form action="/test/{{$post->id}}" enctype="multipart/form-data" method="post">
         @csrf
+        @method('PATCH')
         <div class="row pt-5">
             <div class="col-5">
               <x-jet-label value="Item title" />
@@ -31,8 +32,9 @@
 
         </div>
         <div class="d-flex justify-content-center">
-          <button type="submit" name="button" class="btn btn-primary">Post Item</button>
+          <button type="submit" name="button" class="btn btn-primary">Save Item</button>
         </div>
       </form>
+
     </div>
 </x-app-layout>

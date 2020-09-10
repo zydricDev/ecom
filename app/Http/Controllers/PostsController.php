@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 class PostsController extends Controller
 {
     public function __construct()
@@ -27,6 +28,9 @@ class PostsController extends Controller
 
       $imagePath = request('image')->store('uploads', 'public');
 
+      $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
+      $image->save();
+
       auth()->user()->posts()->create([
         'title' => $data['title'],
         'description' => $data['description'],
@@ -38,5 +42,40 @@ class PostsController extends Controller
       return redirect('/profile/'. auth()->user()->id);
 
 
+    }
+
+    public function show(\App\Models\Post $post)
+    {
+      return view('posts.show', compact('post'));
+    }
+
+    public function edit(\App\Models\Post $post)
+    {
+
+      $this->authorize('update', $post);
+      return view('posts.edit', compact('post'));
+    }
+
+    public function update(\App\Models\Post $post)
+    {
+      $this->authorize('update', $post);
+      $data = request()->validate([
+        'title' => 'required',
+        'description' => 'required',
+        'price' => 'required',
+        'image' => '',
+      ]);
+
+      if(request('image')){
+        $imagePath = request('image')->store('profile', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
+        $image->save();
+      }
+
+      $post->update(array_merge(
+        $data,
+        ['image' => $imagePath]
+      ));
+      return redirect("/profile/{$post->user_id}");
     }
 }
