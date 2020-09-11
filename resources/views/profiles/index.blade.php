@@ -43,7 +43,7 @@
                 <label for="/storage/{{ $post->image }}">Title: {{ $post->title }}</label>
                 <label for="/storage/{{ $post->image }}">Desc: {{ $post->description }}</label>
                 <label for="/storage/{{ $post->image }}">Price: ${{ $post->price }}</label>
-                <label for="/storage/{{ $post->image }}">Date: ${{ $post->created_at->toDateString() }}</label>
+                <label for="/storage/{{ $post->image }}">Date: {{ $post->created_at->toDateString() }}</label>
                 <label for="/storage/{{ $post->image }}">Time Added: {{ $post->created_at->toTimeString() }}</label>
               </div>
 
