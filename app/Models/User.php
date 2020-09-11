@@ -78,6 +78,11 @@ class User extends Authenticatable
 
     }
 
+    public function saveContent()
+    {
+      return $this->hasMany(Shop::class);
+    }
+
 
 
 

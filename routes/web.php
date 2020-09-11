@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ShopController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +24,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+
 Route::get('/p/create', [PostsController::class,'create']);
 Route::post('/p', [PostsController::class,'store']);
 Route::get('/p/{post}', [PostsController::class,'show']);
+
+Route::post('/shop', [ShopController::class,'store']);
+
 
 Route::get('/test/{post}/edit', [PostsController::class,'edit'])->name('test.edit');
 Route::patch('/test/{post}', [PostsController::class,'update'])->name('test.update');
