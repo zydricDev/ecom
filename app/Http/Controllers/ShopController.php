@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     public function store(Request $request){
-
+        if($request->seller_id == auth()->user()->id){
+          return redirect('/profile/'.auth()->user()->id.'?Cannot_buy_your_own_items');
+        }
         $data = $this->validate($request,[
           'seller_id' => 'required',
           'sell_name' => 'required',
@@ -20,6 +22,12 @@ class ShopController extends Controller
           'sell_price' => $data['sell_price'],
         ]);
 
-        return redirect('/profile/1');
+        return redirect('/profile/'.auth()->user()->id);
+    }
+
+    public function index()
+    {
+        $content = Shop::where('user_id', auth()->user()->id)->get();
+        return view('cart.index',compact('content'));
     }
 }

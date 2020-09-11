@@ -31,6 +31,7 @@ Route::post('/p', [PostsController::class,'store']);
 Route::get('/p/{post}', [PostsController::class,'show']);
 
 Route::post('/shop', [ShopController::class,'store']);
+Route::get('/cart', [ShopController::class, 'index']);
 
 
 Route::get('/test/{post}/edit', [PostsController::class,'edit'])->name('test.edit');
