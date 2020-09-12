@@ -25,14 +25,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-
 Route::get('/p/create', [PostsController::class,'create']);
 Route::post('/p', [PostsController::class,'store']);
 Route::get('/p/{post}', [PostsController::class,'show']);
 
+
 Route::post('/shop', [ShopController::class,'store']);
+
 Route::get('/cart', [ShopController::class, 'index']);
 
+
+Route::get('/cart/{info}/edit', [ShopController::class,'edit']);
+Route::patch('/cart/{info}', [ShopController::class,'update']);
 
 Route::get('/test/{post}/edit', [PostsController::class,'edit'])->name('test.edit');
 Route::patch('/test/{post}', [PostsController::class,'update'])->name('test.update');
