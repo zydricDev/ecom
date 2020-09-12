@@ -49,10 +49,11 @@
                             </div>
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="/cart" :active="request()->routeIs('/p/create')">
-                                    Shopping Cart
+                                <x-jet-nav-link href="/cart" :active="request()->routeIs('/cart')">
+                                    Item Cart
                                 </x-jet-nav-link>
                             </div>
+
 
                         </div>
 

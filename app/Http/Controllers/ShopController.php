@@ -15,12 +15,14 @@ class ShopController extends Controller
           'seller_id' => 'required',
           'sell_name' => 'required',
           'sell_price' => 'required',
+          'sell_image' => '',
         ]);
 
         auth()->user()->saveContent()->create([
           'seller_id' => $data['seller_id'],
           'sell_name' => $data['sell_name'],
           'sell_price' => $data['sell_price'],
+          'sell_image' => $data['sell_image'],
         ]);
 
         return redirect('/profile/'.$request->seller_id);
@@ -28,8 +30,10 @@ class ShopController extends Controller
 
     public function index()
     {
-        $content = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','False');
-        return view('cart.items',compact('content'));
+        $content = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','0');
+        $content2 = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0');
+
+        return view('cart.items',compact('content','content2'));
     }
 
     public function edit(Shop $info)
