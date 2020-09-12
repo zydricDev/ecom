@@ -19,8 +19,9 @@ class CreateShopsTable extends Migration
             $table->string('seller_id');
             $table->string('sell_name');
             $table->float('sell_price');
-            $table->boolean('delivered');
-            $table->boolean('confirmed');
+            $table->string('sell_image');
+            $table->boolean('delivered')->default(0);
+            $table->boolean('confirmed')->default(0);
             $table->timestamps();
 
             $table->index('user_id');
