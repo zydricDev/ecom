@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -22,12 +23,29 @@ class ShopController extends Controller
           'sell_price' => $data['sell_price'],
         ]);
 
-        return redirect('/profile/'.auth()->user()->id);
+        return redirect('/profile/'.$request->seller_id);
     }
 
     public function index()
     {
-        $content = Shop::where('user_id', auth()->user()->id)->get();
-        return view('cart.index',compact('content'));
+        $content = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','False');
+        return view('cart.items',compact('content'));
     }
+
+    public function edit(Shop $info)
+    {
+
+      $this->authorize('update', $info);
+      $this->update($info);
+      return redirect('/cart');
+    }
+
+    public function update(Shop $info)
+    {
+
+      $this->authorize('update', $info);
+      $shopUpdate = Shop::where('id',$info->id)->update(['confirmed' => True]);
+      return 1;
+    }
+
 }
