@@ -25,8 +25,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['cart.items'],function($view){
+          $view->with('content', Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','0'));
+        });
+
         View::composer(['cart.itemsPending'],function($view){
-          $view->with('content2', Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0'));
+          $view->with('pendingList', Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0'));
+        });
+
+        View::composer(['cart.itemsDeliver'],function($view){
+          $view->with('pendingList', Shop::where('seller_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0'));
         });
     }
 }

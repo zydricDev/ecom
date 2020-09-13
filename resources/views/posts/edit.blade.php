@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="container">
-      <form action="/test/{{$post->id}}" enctype="multipart/form-data" method="post">
+      <form action="/item/{{$post->id}}" enctype="multipart/form-data" method="post">
         @csrf
         @method('PATCH')
         <div class="row pt-5">

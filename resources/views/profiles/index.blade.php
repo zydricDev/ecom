@@ -32,7 +32,7 @@
             <div class="col-4">
               @can ('update', $post)
               <div class="d-flex justify-content-center">
-                <a href="/test/{{ $post->id }}/edit" class=""><strong>Edit</strong></a>
+                <a href="/item/{{ $post->id }}/edit" class=""><strong>Edit</strong></a>
               </div>
               @endcan
               <a href="/p/{{ $post->id }}">
