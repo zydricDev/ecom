@@ -32,9 +32,11 @@ Route::get('/p/{post}', [PostsController::class,'show']);
 
 Route::post('/shop', [ShopController::class,'store']);
 
+Route::get('/pending', function(){
+  return view('cart.itemsPending');
+});
+
 Route::get('/cart', [ShopController::class, 'index']);
-
-
 Route::get('/cart/{info}/edit', [ShopController::class,'edit']);
 Route::patch('/cart/{info}', [ShopController::class,'update']);
 

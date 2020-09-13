@@ -31,9 +31,9 @@ class ShopController extends Controller
     public function index()
     {
         $content = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','0');
-        $content2 = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0');
+        //$content2 = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0');
 
-        return view('cart.items',compact('content','content2'));
+        return view('cart.items',compact('content'));
     }
 
     public function edit(Shop $info)
