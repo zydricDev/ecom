@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\DeliverController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,12 +37,18 @@ Route::get('/pending', function(){
   return view('cart.itemsPending');
 });
 
+Route::get('/deliver', function(){
+  return view('cart.itemsDeliver');
+});
+Route::get('/deliver/{shop}/edit', [DeliverController::class,'edit']);
+Route::patch('/deliver/{shop}', [DeliverController::class,'update']);
+
 Route::get('/cart', [ShopController::class, 'index']);
 Route::get('/cart/{info}/edit', [ShopController::class,'edit']);
 Route::patch('/cart/{info}', [ShopController::class,'update']);
 
-Route::get('/test/{post}/edit', [PostsController::class,'edit'])->name('test.edit');
-Route::patch('/test/{post}', [PostsController::class,'update'])->name('test.update');
+Route::get('/item/{post}/edit', [PostsController::class,'edit']);
+Route::patch('/item/{post}', [PostsController::class,'update']);
 
 
 Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');

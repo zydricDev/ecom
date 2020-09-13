@@ -53,7 +53,17 @@ class ShopPolicy
      */
     public function update(User $user, Shop $shop)
     {
-        return $user->id == $shop->user_id;
+        if($user->id == $shop->user_id){
+          return $user->id == $shop->user_id;
+        }
+  
+        if($user->id != $shop->user_id &&
+        $user->id == $shop->seller_id &&
+        $shop->seller_id != $shop->user_id)
+        {
+          return $user->id == $shop->seller_id;
+        }
+
     }
 
     /**

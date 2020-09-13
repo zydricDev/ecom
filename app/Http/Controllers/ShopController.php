@@ -30,10 +30,7 @@ class ShopController extends Controller
 
     public function index()
     {
-        $content = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','0');
-        //$content2 = Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0');
-
-        return view('cart.items',compact('content'));
+        return view('cart.items');
     }
 
     public function edit(Shop $info)
@@ -48,7 +45,7 @@ class ShopController extends Controller
     {
 
       $this->authorize('update', $info);
-      $shopUpdate = Shop::where('id',$info->id)->update(['confirmed' => True]);
+      $shopUpdate = Shop::where('id',$info->id)->update(['confirmed' => '1']);
       return 1;
     }
 
