@@ -30,12 +30,22 @@
         @foreach($user->posts as $post)
             <div class="col-4">
               @can ('update', $post)
-              <div class="d-flex justify-content-center">
-                <a href="/item/{{ $post->id }}/edit" class=""><strong>Edit</strong></a>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <a href="/item/{{ $post->id }}/edit" class="btn btn-primary"><strong>Edit</strong></a>
+                </div>
+                <div class="col">
+                  <form action="/item/{{ $post->id }}/delete" method="post">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-primary" value="Delete">
+                  </form>
+                </div>
               </div>
+
               @endcan
               <a href="/p/{{ $post->id }}">
-                <img src="/storage/{{ $post->image }}" class="w-100 d-flex flex-column">
+                <img src="/storage/{{ $post->image }}" class="w-100 d-flex flex-column mt-2">
               </a>
               <div class="d-flex flex-column pt-4">
 

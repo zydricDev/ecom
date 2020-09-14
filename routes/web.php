@@ -54,9 +54,10 @@ Route::patch('/deliver/{shop}', [DeliverController::class,'update']);
 Route::get('/cart', [ShopController::class, 'index']);
 Route::get('/cart/{info}/edit', [ShopController::class,'edit']);
 Route::patch('/cart/{info}', [ShopController::class,'update']);
+Route::delete('/cart/{info}/delete', [ShopController::class,'destroy']);
 
 Route::get('/item/{post}/edit', [PostsController::class,'edit']);
 Route::patch('/item/{post}', [PostsController::class,'update']);
-
+Route::delete('/item/{post}/delete', [PostsController::class,'destroy']);
 
 Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');

@@ -14,7 +14,11 @@
               @can('update', $info)
               <div class="p-3">
                 <a class="btn btn-primary" href="/cart/{{ $info->id }}/edit">Check out</a>
-
+                <form class="mt-3" action="/cart/{{ $info->id }}/delete" method="post">
+                  @csrf
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type="submit" class="btn btn-primary" value="Delete">
+                </form>
               </div>
               @endcan
 
