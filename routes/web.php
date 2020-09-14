@@ -40,6 +40,11 @@ Route::get('/pending', function(){
 Route::get('/deliver', function(){
   return view('cart.itemsDeliver');
 });
+
+Route::get('/history', function(){
+  return view('cart.itemsHistory');
+});
+
 Route::get('/deliver/{shop}/edit', [DeliverController::class,'edit']);
 Route::patch('/deliver/{shop}', [DeliverController::class,'update']);
 

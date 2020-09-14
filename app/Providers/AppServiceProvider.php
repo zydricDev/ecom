@@ -36,5 +36,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['cart.itemsDeliver'],function($view){
           $view->with('pendingList', Shop::where('seller_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','0'));
         });
+
+        View::composer(['cart.itemsHistory'],function($view){
+          $view->with('deliveredList', Shop::where('seller_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','1'));
+          $view->with('recievedList', Shop::where('user_id', auth()->user()->id)->get()->where('confirmed','1')->where('delivered','1'));
+        });
     }
 }
