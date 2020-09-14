@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,10 @@ class ShopController extends Controller
     {
 
       $this->authorize('update', $info);
-      $this->update($info);
+      $anUpdate = $this->update($info);
+      if($anUpdate == 0){
+        return redirect('/cart?Not_enough_funds');
+      }
       return redirect('/cart');
     }
 
@@ -45,8 +49,15 @@ class ShopController extends Controller
     {
 
       $this->authorize('update', $info);
-      $shopUpdate = Shop::where('id',$info->id)->update(['confirmed' => '1']);
-      return 1;
+      $currentBalance = auth()->user()->balance;
+      if($currentBalance >= $info->sell_price){
+        $subtractedBalance = $currentBalance - $info->sell_price;
+        Shop::where('id',$info->id)->update(['confirmed' => '1']);
+        User::where('id',$info->user_id)->update(['balance' => $subtractedBalance]);
+        return 1;
+      }
+
+      return 0;
     }
 
 }

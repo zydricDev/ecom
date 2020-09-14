@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use App\Models\Post;
 class PostsController extends Controller
 {
     public function __construct()
@@ -44,18 +45,18 @@ class PostsController extends Controller
 
     }
 
-    public function show(\App\Models\Post $post)
+    public function show(Post $post)
     {
       return view('posts.show', compact('post'));
     }
 
-    public function edit(\App\Models\Post $post)
+    public function edit(Post $post)
     {
       $this->authorize('update', $post);
       return view('posts.edit', compact('post'));
     }
 
-    public function update(\App\Models\Post $post)
+    public function update(Post $post)
     {
       $this->authorize('update', $post);
       $data = request()->validate([

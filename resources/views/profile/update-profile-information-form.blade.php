@@ -59,6 +59,19 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="title" value="Title" />
+            <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model.defer="state.title" />
+            <x-jet-input-error for="title" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="about" value="About Me" />
+            <x-jet-input id="about" type="text" class="mt-1 block w-full" wire:model.defer="state.about" />
+            <x-jet-input-error for="about" class="mt-2" />
+        </div>
+
     </x-slot>
 
     <x-slot name="actions">
