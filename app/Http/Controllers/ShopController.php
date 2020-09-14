@@ -60,4 +60,9 @@ class ShopController extends Controller
       return 0;
     }
 
+    public function destroy(Shop $info)
+    {
+        $delete_query = Shop::where('id',$info->id)->where('user_id',$info->user_id)->delete();
+        return redirect("/cart");
+    }
 }

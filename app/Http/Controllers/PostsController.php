@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -77,5 +77,15 @@ class PostsController extends Controller
         ['image' => $imagePath]
       ));
       return redirect("/profile/{$post->user_id}");
+    }
+
+    public function destroy(Post $post)
+    {
+        $delete_query = Post::where('id',$post->id)->where('user_id',$post->user_id)->delete();
+        $imagePath = $post->image;
+        if($imagePath){
+          unlink(storage_path('app/public/'.$imagePath));
+        }
+        return redirect("/profile/{$post->user_id}");
     }
 }
