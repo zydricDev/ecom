@@ -23,6 +23,12 @@ class CreateUsersTable extends Migration
             $table->string('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+
+            $table->string('title')->nullable();
+            $table->string('about')->nullable();
+            $table->float('balance',15,2)->default('0');
+
+
         });
     }
 

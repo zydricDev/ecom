@@ -16,9 +16,8 @@
             <div class="pr-3"><strong>Email: {{ $user->email }}</strong></div>
 
             <div class="d-flex flex-column pt-4">
-              <div class="pr-3"><strong>Title: {{ $user->profile->title }}</strong></div>
-              <div class="pr-3"><strong>About Me: {{ $user->profile->description }}</strong></div>
-              <div class="pr-3"><strong>Net: {{ $user->profile->price }}</strong></div>
+              <div class="pr-3"><strong>Title: {{ $user->title }}</strong></div>
+              <div class="pr-3"><strong>About Me: {{ $user->about }}</strong></div>
               <div class="pr-3"><strong>Listed: {{ $user->posts->count() }} item(s)</strong></div>
             </div>
 

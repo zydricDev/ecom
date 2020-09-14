@@ -72,6 +72,12 @@
                                 </x-jet-nav-link>
                             </div>
 
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="/balance/{{ Auth::user()->id }}/edit" :active="request()->routeIs('/history')">
+                                    Balance: ${{ Auth::user()->balance }}
+                                </x-jet-nav-link>
+                            </div>
+
                         </div>
 
                         <!-- Settings Dropdown -->
@@ -93,8 +99,8 @@
                                         Profile
                                     </x-jet-dropdown-link>
 
-                                    <x-jet-dropdown-link href="/profile/{{ Auth::user()->id }}/edit">
-                                        Edit Profile
+                                    <x-jet-dropdown-link href="/balance/{{ Auth::user()->id }}/edit">
+                                        Add Balance
                                     </x-jet-dropdown-link>
 
                                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

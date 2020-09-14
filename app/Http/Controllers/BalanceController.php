@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shop;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class DeliverController extends Controller
+class BalanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class DeliverController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show(User $user)
     {
         //
     }
@@ -53,39 +52,42 @@ class DeliverController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shop $shop)
+    public function edit(User $user)
     {
-
-        $this->authorize('update', $shop);
-        $this->update($shop);
-        return redirect('/deliver');
+        //$this->authorize('update', $user);
+        return view('profile.balancePage', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Shop $shop)
+    public function update(User $user)
     {
+        $currentBalance = $user->balance;
+        if($currentBalance >= 1000000){
+          return redirect("/profile/{$user->id}?Limit_is_1_million");
+        }
+        $addedBalance = $currentBalance + request('addFunds');
 
-        $this->authorize('update', $shop);
-        Shop::where('id',$shop->id)->update(['delivered' => '1']);
-        return 1;
+        User::where('id',$user->id)->update(['balance' => $addedBalance]);
+        return redirect("/profile/{$user->id}");
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy(User $user)
     {
         //
     }

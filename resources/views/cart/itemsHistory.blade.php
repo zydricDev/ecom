@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          Item(s) Pending
+          History
         </h2>
 
     </x-slot>
@@ -14,7 +14,7 @@
           @foreach($deliveredList as $list)
             <div class="row">
               <div class="d-flex p-3">
-                <p class="p-2">Items Delivered: </p>
+                <p class="p-2">Item Delivered: </p>
               </div>
 
               <img class="w-25 pl-5 mb-5" src="{{$list->sell_image}}">
@@ -32,7 +32,7 @@
           @foreach($recievedList as $list)
             <div class="row">
               <div class="d-flex p-3">
-                <p class="p-2">Items Recieved: </p>
+                <p class="p-2">Item Recieved: </p>
               </div>
 
               <img class="w-25 pl-5 mb-5" src="{{$list->sell_image}}">

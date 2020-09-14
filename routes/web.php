@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\DeliverController;
+use App\Http\Controllers\BalanceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,14 +26,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-
-Route::get('/p/create', [PostsController::class,'create']);
-Route::post('/p', [PostsController::class,'store']);
-Route::get('/p/{post}', [PostsController::class,'show']);
-
-
-Route::post('/shop', [ShopController::class,'store']);
-
 Route::get('/pending', function(){
   return view('cart.itemsPending');
 });
@@ -44,6 +37,16 @@ Route::get('/deliver', function(){
 Route::get('/history', function(){
   return view('cart.itemsHistory');
 });
+
+Route::get('/balance/{user}/edit', [BalanceController::class,'edit']);
+Route::patch('/balance/{user}', [BalanceController::class,'update']);
+
+Route::get('/p/create', [PostsController::class,'create']);
+Route::post('/p', [PostsController::class,'store']);
+Route::get('/p/{post}', [PostsController::class,'show']);
+
+
+Route::post('/shop', [ShopController::class,'store']);
 
 Route::get('/deliver/{shop}/edit', [DeliverController::class,'edit']);
 Route::patch('/deliver/{shop}', [DeliverController::class,'update']);
