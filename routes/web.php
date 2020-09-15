@@ -6,6 +6,8 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\DeliverController;
 use App\Http\Controllers\BalanceController;
+
+use App\Http\Controllers\LiveSearch;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,8 @@ use App\Http\Controllers\BalanceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 
 Route::get('/', function () {
@@ -45,6 +49,8 @@ Route::get('/p/create', [PostsController::class,'create']);
 Route::post('/p', [PostsController::class,'store']);
 Route::get('/p/{post}', [PostsController::class,'show']);
 
+Route::get('/browse', [PostsController::class,'index']);
+Route::get('browse/action', [PostsController::class,'action']);
 
 Route::post('/shop', [ShopController::class,'store']);
 

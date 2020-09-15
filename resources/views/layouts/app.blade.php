@@ -43,8 +43,14 @@
                             </div>
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="/browse" :active="request()->routeIs('/browse')">
+                                    Browse Items
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <x-jet-nav-link href="/p/create" :active="request()->routeIs('/p/create')">
-                                    Sell
+                                    Sell Items
                                 </x-jet-nav-link>
                             </div>
 

@@ -88,4 +88,55 @@ class PostsController extends Controller
         }
         return redirect("/profile/{$post->user_id}");
     }
+
+    public function index(Post $post)
+    {
+        return view('posts.browse', compact('post'));
+    }
+
+    function action(Request $request)
+    {
+
+     if($request->ajax())
+     {
+        $output = '';
+        $query = $request->get('query');
+        if($query != ''){
+
+         $data = POST::where('title', 'like', '%'.$query.'%')
+           ->orWhere('description', 'like', '%'.$query.'%')
+           ->orWhere('user_id', 'like', '%'.$query.'%')->get();
+
+        }else{
+         $data = POST::orderBy('created_at', 'desc')->get();
+        }
+
+        $total_row = $data->count();
+
+        if($total_row > 0){
+         foreach($data as $row){
+          $output .= '
+          <tr>
+           <td>'.$row->title.'</td>
+           <td>'.$row->description.'</td>
+           <td>'.$row->user_id.'</td>
+          </tr>
+          ';
+          }
+        }else{
+         $output = '
+         <tr>
+          <td align="center" colspan="5">No results</td>
+         </tr>
+         ';
+        }
+
+        $data = array(
+         'searched_items'  => $output,
+         'summed_row'  => $total_row
+        );
+
+        echo json_encode($data);
+       }
+    }
 }
