@@ -17,8 +17,10 @@
       <table class="table table-striped table-bordered">
        <thead>
         <tr>
+          
+         <th></th>
          <th>Product Name</th>
-         <th>Description</th>
+         <th>Price</th>
          <th>Seller Id</th>
         </tr>
        </thead>

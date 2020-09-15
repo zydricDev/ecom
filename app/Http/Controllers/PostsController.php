@@ -116,10 +116,13 @@ class PostsController extends Controller
         if($total_row > 0){
          foreach($data as $row){
           $output .= '
+
           <tr>
-           <td>'.$row->title.'</td>
-           <td>'.$row->description.'</td>
-           <td>'.$row->user_id.'</td>
+
+             <td><a href="/p/'.$row->id.'"><img src="/storage/'.$row->image.'" class="w-20"></a></td>
+             <td><a href="/p/'.$row->id.'">'.$row->title.'</a></td>
+             <td>$'.$row->price.'</td>
+             <td>'.$row->user_id.'</td>
           </tr>
           ';
           }
