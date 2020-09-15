@@ -108,7 +108,7 @@ class PostsController extends Controller
            ->orWhere('user_id', 'like', '%'.$query.'%')->get();
 
         }else{
-         $data = POST::orderBy('created_at', 'desc')->get();
+         $data = POST::orderBy('created_at', 'desc')->limit(10)->get();
         }
 
         $total_row = $data->count();
