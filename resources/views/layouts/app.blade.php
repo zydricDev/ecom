@@ -30,7 +30,7 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <a href="/dashboard">
+                                <a href="/profile/{{Auth::user()->id}}">
                                     <x-jet-application-mark class="block h-9 w-auto" />
                                 </a>
                             </div>
@@ -177,8 +177,8 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <x-jet-responsive-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                            Dashboard
+                        <x-jet-responsive-nav-link href="/profile/{{Auth::user()->id}}" :active="request()->routeIs('/profile/{{Auth::user()->id}}')">
+                            Home
                         </x-jet-responsive-nav-link>
                     </div>
 

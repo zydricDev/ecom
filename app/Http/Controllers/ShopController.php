@@ -14,6 +14,7 @@ class ShopController extends Controller
         }
         $data = $this->validate($request,[
           'seller_id' => 'required',
+          'sell_quantity' => 'required',
           'sell_name' => 'required',
           'sell_price' => 'required',
           'sell_image' => '',
@@ -21,6 +22,7 @@ class ShopController extends Controller
 
         auth()->user()->saveContent()->create([
           'seller_id' => $data['seller_id'],
+          'sell_quantity' => $data['sell_quantity'],
           'sell_name' => $data['sell_name'],
           'sell_price' => $data['sell_price'],
           'sell_image' => $data['sell_image'],
@@ -50,8 +52,8 @@ class ShopController extends Controller
 
       $this->authorize('update', $info);
       $currentBalance = auth()->user()->balance;
-      if($currentBalance >= $info->sell_price){
-        $subtractedBalance = $currentBalance - $info->sell_price;
+      if($currentBalance >= $info->sell_price * $info->sell_quantity){
+        $subtractedBalance = $currentBalance - $info->sell_price * $info->sell_quantity;
         Shop::where('id',$info->id)->update(['confirmed' => '1']);
         User::where('id',$info->user_id)->update(['balance' => $subtractedBalance]);
         return 1;

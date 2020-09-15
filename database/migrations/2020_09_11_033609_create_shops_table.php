@@ -20,6 +20,7 @@ class CreateShopsTable extends Migration
             $table->string('sell_name');
             $table->float('sell_price');
             $table->string('sell_image');
+            $table->integer('sell_quantity');
             $table->boolean('delivered')->default(0);
             $table->boolean('confirmed')->default(0);
             $table->timestamps();

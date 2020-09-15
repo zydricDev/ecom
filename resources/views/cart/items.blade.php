@@ -27,9 +27,14 @@
               <div class="d-flex flex-column p-3">
                 <p class="p-2">Seller Id#: {{$info->seller_id}}</p>
                 <p class="p-2">Item Name: {{$info->sell_name}}</p>
-                <p class="p-2">Buyer Id#: {{$info->user_id}}</p>
-                <p class="p-2">Item Price: ${{$info->sell_price}}</p>
-
+                <p class="p-2">Item(ea.) Price : ${{$info->sell_price}}</p>
+                <p class="p-2">Quantity: x{{$info->sell_quantity}}</p>
+                <p class="p-2">Added: {{$info->created_at}}</p>
+                <strong class="p-2">Total Price: $<span id="total.{{$info->seller_id}}.{{$info->created_at}}"></span></strong>
+                <script>
+                  var total = {{$info->sell_price}} * {{$info->sell_quantity}};
+                  document.getElementById("total.{{$info->seller_id}}.{{$info->created_at}}").innerHTML = total;
+                </script>
               </div>
             </div>
           @endforeach
