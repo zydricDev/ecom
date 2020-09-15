@@ -22,23 +22,19 @@ use App\Http\Controllers\LiveSearch;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+    return view('posts.browse');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('/pending', function(){
+Route::middleware(['auth:sanctum', 'verified'])->get('/pending', function(){
   return view('cart.itemsPending');
 });
 
-Route::get('/deliver', function(){
+Route::middleware(['auth:sanctum', 'verified'])->get('/deliver', function(){
   return view('cart.itemsDeliver');
 });
 
-Route::get('/history', function(){
+Route::middleware(['auth:sanctum', 'verified'])->get('/history', function(){
   return view('cart.itemsHistory');
 });
 

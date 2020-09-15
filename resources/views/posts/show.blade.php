@@ -22,7 +22,9 @@
           <input type="hidden" id="sell_name" name="sell_name" value="{{$post->title}}">
           <input type="hidden" id="sell_price" name="sell_price" value="{{$post->price}}">
           <input type="hidden" id="sell_image" name="sell_image" value="/storage/{{$post->image}}">
-          <button type="submit" class="btn btn-primary">Add to cart</button>
+          <label for="sell_quantity">Quantity: x<input type="number" id="sell_quantity" name="sell_quantity" value='1' class="bg-primary text-white w-12"></label>
+
+          <button type="submit" class="btn btn-primary mt-4">Add to cart</button>
         </form>
 
 
